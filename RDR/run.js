@@ -10,12 +10,11 @@ class RDRPOSTagger extends SCRDRTree {
     }
 
     tagRawSentence(DICT, sentence) {
-        let line = initializeSentence(DICT, sentence);
+        let wordTags = initializeSentence(DICT, sentence).split(' ');
         let words = [];
-        let wordTags = line.split(' ');
         for(let i  = 0; i < wordTags.length; i++){
             let fwObject = FWObject.getFWObject(wordTags, i);
-            let { word, tag } = getWordTag(wordTags[i]);
+            let [ word, tag ] = getWordTag(wordTags[i]);
             let node = this.findFiredNode(fwObject);
             if(node.depth > 0){
                 words.push(word + "/" + node.conclusion);
@@ -26,7 +25,7 @@ class RDRPOSTagger extends SCRDRTree {
             }
         }
 
-        return wordTags.join(' ');
+        return words.join(' ');
     }
 }
 
