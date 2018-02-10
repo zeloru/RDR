@@ -4,7 +4,7 @@ module.exports = class Node {
     // A class to represent the nodes in SCRDR tree
 
     constructor(condition, conclusion, 
-                father = undefined, exceptChild = undefined, elseChild = undefined, 
+                father = null, exceptChild = null, elseChild = null, 
                 cornerstoneCases = [], depth = 0){
         this.condition = condition;
         this.conclusion = conclusion;

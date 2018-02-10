@@ -16,13 +16,13 @@ function getWordTag(wordTag){
 function readDictionary(inputFile){
     const dictionary = new Map();
     
-    let dictContent = readFileSync(inputFile, { encoding: 'utf-8' });
-    let lines = dictContent.split('\n');
-    
-    for (let line of lines){
+    readFileSync(inputFile, { encoding: 'utf-8' })
+    .split('\n')
+    .forEach(line => {
         let wordtag = line.trim().split(' ');
         dictionary.set(wordtag[0], wordtag[1]);
-    }
+    });
+    
     return dictionary;
 }
 

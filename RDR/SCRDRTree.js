@@ -7,7 +7,7 @@ const FWObject = require('./FWObject');
 module.exports = class SCRDRTree {
     // Single Classification Ripple Down Rules tree for Part-of-Speech and morphological tagging
 
-    constructor(root = undefined) {
+    constructor(root = null) {
         this.root = root;
     }
 
@@ -81,7 +81,7 @@ module.exports = class SCRDRTree {
             let satisfied = true;
 
             for (let i in notNoneIds) {
-                if (cnContext[i] != obContext[i]) {
+                if (cnContext[i] !== obContext[i]) {
                     satisfied = false;
                     break;
                 }

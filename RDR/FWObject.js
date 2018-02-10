@@ -2,19 +2,17 @@
 
 module.exports = class FWObject {
     constructor(check = false) {
-        this.context = [null, null, null, null, null, null, null, null, null, null, null, null, null]
+        this.notNoneIds = [];
+        this.context = [null, null, null, null, null, null, null, null, null, null, null, null, null];
         if (check === true) {
-            let i = 0;
-            while (i < 10) {
+            for (let i = 0; i < 10; i += 2) {
                 this.context[i] = "<W>";
                 this.context[i + 1] = "<T>";
-                i = i + 2;
             }
             this.context[10] = "<SFX>"; // suffix
             this.context[11] = "<SFX>";
             this.context[12] = "<SFX>";
         }
-        this.notNoneIds = [];
     }
 
     static getFWObject(startWordTags, index) {
@@ -23,13 +21,12 @@ module.exports = class FWObject {
         object.context[4] = word;
         object.context[5] = tag;
 
-        let decodedW = word;
-        if (decodedW.length >= 4){
-            object.context[10] = decodedW.slice(-2);
-            object.context[11] = decodedW.slice(-3);
+        if (word.length >= 4){
+            object.context[10] = word.slice(-2);
+            object.context[11] = word.slice(-3);
         }
-        if (decodedW.length >= 5){
-            object.context[12] = decodedW.slice(-4);
+        if (word.length >= 5){
+            object.context[12] = word.slice(-4);
         }
         if (index > 0 ){
             let [ preWord1, preTag1 ] = getWordTag(startWordTags[index - 1])
